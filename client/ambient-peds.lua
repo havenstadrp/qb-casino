@@ -4,13 +4,14 @@ end)
 
 
 function CasinoPeds()
-    -- Employee
+
+    --Employee
     model = GetHashKey("U_F_M_CasinoCash_01")
     RequestModel(model)
     while not HasModelLoaded(model) do
         Wait(1)
     end
-    ped = CreatePed(0, model ,950.214, 33.151, 70.839, true)
+    ped = CreatePed(0, model ,990.0613, 30.28471, 70.465, true)
     FreezeEntityPosition(ped, true)
     SetEntityHeading(ped, 57.052 )
     SetEntityInvincible(ped, true)
