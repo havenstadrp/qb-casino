@@ -67,7 +67,7 @@ RegisterNetEvent('doj:casinoChipMenu', function()
 end)
 
 CreateThread(function()
-    local CasinoShop = CircleZone:Create(vector3(948.591, 34.207, 71.839), 2.0, {
+    local CasinoShop = CircleZone:Create(vector3(990.9494, 31.25706, 71.466), 3.0, {
         name="CasinoShop",
         heading=160,
         debugPoly=false,
