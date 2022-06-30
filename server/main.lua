@@ -1,13 +1,13 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local ItemList = {
-    ["casinochips"] = 1,
+    ["casino_redchip"] = 1,
 }
 
 RegisterNetEvent('qb-casino:server:sell', function()
     local src = source
     local price = 0
     local Player = QBCore.Functions.GetPlayer(src)
-    local xItem = Player.Functions.GetItemByName("casinochips")
+    local xItem = Player.Functions.GetItemByName("casino_redchip")
     if xItem ~= nil then
         for k, v in pairs(Player.PlayerData.items) do
             if Player.PlayerData.items[k] ~= nil then
@@ -33,9 +33,9 @@ AddEventHandler("qb-casino:server:WhiteSell", function()
     local Player = QBCore.Functions.GetPlayer(src)
     local xItem = Player.Functions.GetItemByName("casino_whitechip")
     if xItem ~= nil then
-        for k, v in pairs(Player.PlayerData.items) do 
-            if Player.PlayerData.items[k] ~= nil then 
-                if ItemList[Player.PlayerData.items[k].name] ~= nil then 
+        for k, v in pairs(Player.PlayerData.items) do
+            if Player.PlayerData.items[k] ~= nil then
+                if ItemList[Player.PlayerData.items[k].name] ~= nil then
                     price = price * (ItemList[Player.PlayerData.items[k].name] * Player.PlayerData.items[k].amount)
                     Player.Functions.RemoveItem(Player.PlayerData.items[k].name, Player.PlayerData.items[k].amount, k)
                     Player.Functions.AddMoney(Config.payment, price, "sold-casino-chips")
@@ -60,10 +60,10 @@ AddEventHandler("qb-casino:server:RedSell", function()
     local price = Config.redChipPrice
     local Player = QBCore.Functions.GetPlayer(src)
     local xItem = Player.Functions.GetItemByName("casino_redchip")
-    if xItem ~= nil then 
-        for k, v in pairs(Player.PlayerData.items) do 
-            if Player.PlayerData.items[k] ~= nil then 
-                if ItemList[Player.PlayerData.items[k].name] ~= nil then 
+    if xItem ~= nil then
+        for k, v in pairs(Player.PlayerData.items) do
+            if Player.PlayerData.items[k] ~= nil then
+                if ItemList[Player.PlayerData.items[k].name] ~= nil then
                     price = price * (ItemList[Player.PlayerData.items[k].name] * Player.PlayerData.items[k].amount)
                     Player.Functions.RemoveItem(Player.PlayerData.items[k].name, Player.PlayerData.items[k].amount, k)
                     Player.Functions.AddMoney(Config.payment, price, "sold-casino-chips")
@@ -89,9 +89,9 @@ AddEventHandler("qb-casino:server:BlueSell", function()
     local Player = QBCore.Functions.GetPlayer(src)
     local xItem = Player.Functions.GetItemByName("casino_bluechip")
     if xItem ~= nil then
-        for k, v in pairs(Player.PlayerData.items) do 
-            if Player.PlayerData.items[k] ~= nil then 
-                if ItemList[Player.PlayerData.items[k].name] ~= nil then 
+        for k, v in pairs(Player.PlayerData.items) do
+            if Player.PlayerData.items[k] ~= nil then
+                if ItemList[Player.PlayerData.items[k].name] ~= nil then
                     price = price * (ItemList[Player.PlayerData.items[k].name] * Player.PlayerData.items[k].amount)
                     Player.Functions.RemoveItem(Player.PlayerData.items[k].name, Player.PlayerData.items[k].amount, k)
                     Player.Functions.AddMoney(Config.payment, price, "sold-casino-chips")
@@ -117,9 +117,9 @@ AddEventHandler("qb-casino:server:BlackSell", function()
     local Player = QBCore.Functions.GetPlayer(src)
     local xItem = Player.Functions.GetItemByName("casino_blackchip")
     if xItem ~= nil then
-        for k, v in pairs(Player.PlayerData.items) do 
-            if Player.PlayerData.items[k] ~= nil then 
-                if ItemList[Player.PlayerData.items[k].name] ~= nil then 
+        for k, v in pairs(Player.PlayerData.items) do
+            if Player.PlayerData.items[k] ~= nil then
+                if ItemList[Player.PlayerData.items[k].name] ~= nil then
                     price = price * (ItemList[Player.PlayerData.items[k].name] * Player.PlayerData.items[k].amount)
                     Player.Functions.RemoveItem(Player.PlayerData.items[k].name, Player.PlayerData.items[k].amount, k)
                     Player.Functions.AddMoney(Config.payment, price, "sold-casino-chips")
@@ -145,9 +145,9 @@ AddEventHandler("qb-casino:server:GoldSell", function()
     local Player = QBCore.Functions.GetPlayer(src)
     local xItem = Player.Functions.GetItemByName("casino_goldchip")
     if xItem ~= nil then
-        for k, v in pairs(Player.PlayerData.items) do 
-            if Player.PlayerData.items[k] ~= nil then 
-                if ItemList[Player.PlayerData.items[k].name] ~= nil then 
+        for k, v in pairs(Player.PlayerData.items) do
+            if Player.PlayerData.items[k] ~= nil then
+                if ItemList[Player.PlayerData.items[k].name] ~= nil then
                     price = price * (ItemList[Player.PlayerData.items[k].name] * Player.PlayerData.items[k].amount)
                     Player.Functions.RemoveItem(Player.PlayerData.items[k].name, Player.PlayerData.items[k].amount, k)
                     Player.Functions.AddMoney(Config.payment, price, "sold-casino-chips")
@@ -158,7 +158,7 @@ AddEventHandler("qb-casino:server:GoldSell", function()
             end
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, "You dont have any gold casino chips...", "error") 
+        TriggerClientEvent('QBCore:Notify', src, "You dont have any gold casino chips...", "error")
         TriggerClientEvent("doj:casinoChipMenu", src)
     end
 end)
@@ -168,7 +168,7 @@ end)
 function SetExports()
 exports["qb-blackjack"]:SetGetChipsCallback(function(source)
     local Player = QBCore.Functions.GetPlayer(source)
-    local Chips = Player.Functions.GetItemByName("casinochips")
+    local Chips = Player.Functions.GetItemByName("casino_redchip")
 
     if Chips ~= nil then
         Chips = Chips
@@ -181,8 +181,9 @@ end)
         local Player = QBCore.Functions.GetPlayer(source)
 
         if Player ~= nil then
-            Player.Functions.RemoveItem("casinochips", amount)
-            TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['casinochips'], "remove")
+            Player.Functions.RemoveItem("casino_redchip", amount)
+            TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['casino_redchip'], "remove")
+            print("casino chips removed")
             TriggerEvent("qb-log:server:CreateLog", "casino", "Chips", "yellow", "**"..GetPlayerName(source) .. "** put $"..amount.." in table")
         end
     end)
@@ -191,8 +192,9 @@ end)
         local Player = QBCore.Functions.GetPlayer(source)
 
         if Player ~= nil then
-            Player.Functions.AddItem("casinochips", amount)
-            TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['casinochips'], "add")
+            Player.Functions.AddItem("casino_redchip", amount)
+            TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['casino_redchip'], "add")
+            print("casino chips added")
             TriggerEvent("qb-log:server:CreateLog", "casino", "Chips", "red", "**"..GetPlayerName(source) .. "** got $"..amount.." from table table and he won the double")
         end
     end)
